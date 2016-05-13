@@ -76,7 +76,7 @@ def getJob(url):
         return rdata
 if __name__=='__main__':
     time1=datetime.datetime.now()
-    keyword=u'数据挖掘'
+    keyword=u'python'
     pagenum,keywordindex=getPageNum(keyword)
     urlslist=getUrls(keywordindex,pagenum)
     urlslist.pop(3)#第四页报重定向错误,最后一条http://www.lagou.com/jobs/1808555.html网站上已经被删除
@@ -91,7 +91,6 @@ if __name__=='__main__':
     for data in rdata:
         totaldata=pd.concat([totaldata,data],axis=0)
     totaldata.index=range(1,len(totaldata)+1)
-    #使用excelwriter可以避免编码问题
     totaldata['keyword']=keywordindex
     ew=pd.ExcelWriter('shujuwajue2.xls',encoding='utf-8')
     totaldata.to_excel(ew,sheet_name='lagou')
