@@ -79,9 +79,6 @@ if __name__=='__main__':
     keyword=u'python'
     pagenum,keywordindex=getPageNum(keyword)
     urlslist=getUrls(keywordindex,pagenum)
-    urlslist.pop(3)#第四页报重定向错误,最后一条http://www.lagou.com/jobs/1808555.html网站上已经被删除
-    #urlslist=['http://www.lagou.com/jobs/positionAjax.json?px=default&first=True&kd=\xe6\x95\xb0\xe6\x8d\xae\xe6\x8c\x96\xe6\x8e\x98&pn=1', 'http://www.lagou.com/jobs/positionAjax.json?px=default&first=False&kd=\xe6\x95\xb0\xe6\x8d\xae\xe6\x8c\x96\xe6\x8e\x98&pn=2', 'http://www.lagou.com/jobs/positionAjax.json?px=default&first=False&kd=\xe6\x95\xb0\xe6\x8d\xae\xe6\x8c\x96\xe6\x8e\x98&pn=4',]页码是4的时候报错multiprocessing.pool.MaybeEncodingError: Error sending result: 'HTTPError()'. Reason: 'TypeError("can't pickle cStringIO.StringO objects",) 301重定向错误 moved permanently'
-
     pool=Pool(2)
     rdata=pool.map(getJob,urlslist)
     pool.close()
